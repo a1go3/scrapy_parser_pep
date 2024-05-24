@@ -15,10 +15,14 @@ class PepSpider(scrapy.Spider):
     def parse_pep(self, response):
         yield {
             'number': int(response.xpath(
-                '//*[@id="pep-page-section"]/header/ul/li[3]/text()').get(
-            ).replace('PEP ', ' ').strip()),
+                '//header/ul/li[3]/text()'
+            ).get().replace('PEP ', ' ').strip()),
 
-            'name': response.xpath('//*[@class="page-title"]/text()').get(),
+            'name': response.xpath(
+                '//*[@class="page-title"]/text()'
+            ).get(),
 
-            'status': response.xpath('//abbr/text()').get()
+            'status': response.xpath(
+                '//abbr/text()')
+            .get()
         }
