@@ -1,7 +1,7 @@
 import csv
 from collections import defaultdict
 
-from .settings import BASE_DIR, DATETIME_FORMAT, FILE_NAME
+from .settings import BASE_DIR, FILE_NAME
 
 
 class PepParsePipeline:
@@ -9,15 +9,11 @@ class PepParsePipeline:
         self.results_dir = BASE_DIR / 'results'
         self.results_dir.mkdir(exist_ok=True)
 
-
     def open_spider(self, spider):
         self.results = defaultdict(int)
 
     def process_item(self, item, spider):
-        if item['status'] is not None:
-            self.results[item['status']] += 1
-        else:
-            self.results['Draft'] += 1
+        self.results[item['status']] += 1
         return item
 
     def close_spider(self, spider):
