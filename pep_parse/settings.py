@@ -91,3 +91,19 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+FEEDS = {
+    # Имя файла для сохранения данных теперь указываем здесь,
+    # а не при вызове паука из консоли.
+    'peps.csv': {
+        # Формат файла.
+        'format': 'csv',
+        # Поля, данные из которых будут выведены в файл, и их порядок.
+        # Выведем в этот файл только два поля из трёх.
+        'fields': ['number', 'name', 'status'],
+        # Если файл с заданным именем уже существует, то
+        # при значении False данные будут дописываться в существующий файл;
+        # при значении True существующий файл будет перезаписан.
+        'overwrite': True
+    }
+}
