@@ -1,14 +1,15 @@
 import scrapy
 
+from pep_parse.settings import ALLOWED_DOMAINS, START_URLS, NAME
+
 
 class PepSpider(scrapy.Spider):
-    name = "pep"
-    allowed_domains = ["peps.python.org"]
-    start_urls = ["https://peps.python.org"]
+    name = NAME
+    allowed_domains = [ALLOWED_DOMAINS]
+    start_urls = [START_URLS]
 
     def parse(self, response):
-        all_peps = response.xpath('//*[@id="numerical-index"]//a/@href')
-        for pep_link in all_peps:
+        for pep_link in response.xpath('//*[@id="numerical-index"]//a/@href'):
             yield response.follow(pep_link, callback=self.parse_pep)
 
     def parse_pep(self, response):
@@ -17,8 +18,7 @@ class PepSpider(scrapy.Spider):
                 '//*[@id="pep-page-section"]/header/ul/li[3]/text()').get(
             ).replace('PEP ', ' ').strip()),
 
-            'name': response.css('.page-title::text').get(),
+            'name': response.xpath('//*[@class="page-title"]/text()').get(),
 
-            'status': response.xpath(
-                '//*[@id="pep-content"]/dl/dd[2]/abbr/text()').get()
+            'status': response.xpath('//abbr/text()').get()
         }

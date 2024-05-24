@@ -1,6 +1,6 @@
 attrs==21.4.0
 Automat==20.2.0
-cffi==1.15.0
+cffi==1.16.0
 constantly==15.1.0
 cryptography==36.0.2
 cssselect==1.1.0
@@ -10,7 +10,7 @@ hpack==3.0.0
 hyperframe==5.2.0
 hyperlink==21.0.0
 idna==3.3
-importlib-metadata==4.2.0
+importlib-metadata==4.11.4
 incremental==21.3.0
 iniconfig==1.1.1
 itemadapter==0.4.0
