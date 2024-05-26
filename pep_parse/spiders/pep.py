@@ -22,7 +22,7 @@ class PepSpider(scrapy.Spider):
                 '//*[@class="page-title"]/text()'
             ).get(),
 
-            'status': response.xpath(
-                '//abbr/text()')
-            .get()
+            'status': response.css(
+                'dt:contains("Status")+dd abbr::text'
+            ).get()
         }
