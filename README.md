@@ -11,7 +11,7 @@
 
 Клонируйте репозиторий к себе на компьютер:
 ```
-https://github.com/tatarenkov-r-v/scrapy_parser_pep.git
+https://github.com/a1go3/scrapy_parser_pep.git
 ```
 
 Cоздайте виртуальное окружение и установите зависимости:
